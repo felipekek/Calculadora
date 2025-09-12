@@ -1,15 +1,15 @@
-/* Reset básico */
+/* Remove setas do input number */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Remove setas no Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -23,14 +23,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1d3557, #457b9d);
+  background: linear-gradient(135deg, #264653, #2a9d8f);
 }
 
 /* Container da calculadora */
 .calculadora {
   background: #f1faee;
   padding: 25px;
-  border-radius: 20px;
+  border-radius: 0; /* sem bordas curvas */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   width: 320px;
   text-align: center;
@@ -44,7 +44,7 @@ body {
 /* Título */
 .calculadora h2 {
   margin-bottom: 20px;
-  color: #1d3557;
+  color: #264653;
   font-size: 1.8rem;
   font-weight: bold;
 }
@@ -54,15 +54,15 @@ body {
   width: 90%;
   padding: 12px;
   margin: 10px 0;
-  border: 2px solid #457b9d;
-  border-radius: 10px;
+  border: 2px solid #2a9d8f;
+  border-radius: 0; /* sem borda curva */
   font-size: 1rem;
   outline: none;
   transition: 0.3s;
 }
 
 .calculadora input:focus {
-  border-color: #1d3557;
+  border-color: #264653;
   background: #f8f9fa;
 }
 
@@ -72,18 +72,18 @@ body {
   height: 60px;
   margin: 10px;
   border: none;
-  border-radius: 15px;
+  border-radius: 0; /* sem borda curva */
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
   cursor: pointer;
-  background: #457b9d;
+  background: #2a9d8f;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
   transition: all 0.2s ease;
 }
 
 .calculadora button:hover {
-  background: #1d3557;
+  background: #264653;
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(0,0,0,0.25);
 }
@@ -98,9 +98,32 @@ body {
   margin-top: 20px;
   padding: 12px;
   background: #e9ecef;
-  border-radius: 10px;
+  border-radius: 0; /* sem borda curva */
   font-size: 1.2rem;
-  color: #1d3557;
+  color: #264653;
   font-weight: bold;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
+
+#btnCalcular {
+  width: 90%;
+  height: 70px;
+  margin-top: 15px;
+  background: #e76f51; /* cor diferente para destacar */
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+#btnCalcular:hover {
+  background: #d62828;
+  transform: translateY(-3px);
+}
+
+#btnCalcular:active {
+  transform: translateY(2px);
+}
+

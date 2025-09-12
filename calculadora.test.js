@@ -1,5 +1,7 @@
 // testes das funções da calculadora
-const { doOperador } = require('./calculadora');
+const { doOperador, executarCalculo, trollarCalculo } = require('./calculadora');
+
+jest.useFakeTimers();
 
 // testes soma
 test('Soma: 2 + 2 = 4', () => {
@@ -35,7 +37,7 @@ test('Subtração: 78 - 100 = -22', () => {
     expect(doOperador("-", 78, 100)).toBe(-22);
 });
 
-test('Subtração: √49 - 22.999999999999998 = -15.999999999999998', () => {
+test('Subtração: √49 - 22.999999999999998 ≈ -16', () => {
     expect(doOperador("-", Math.sqrt(49), 22.999999999999998))
         .toBeCloseTo(-16, 10);
 });
@@ -53,7 +55,6 @@ test('Multiplicação: √225 x √36 = 90', () => {
     expect(doOperador("x", Math.sqrt(225), Math.sqrt(36))).toBe(90);
 });
 
-// corrigido para -Math.sqrt(2000)
 test('Multiplicação: -√2000 x 18 ≈ -804.9844', () => {
     expect(doOperador("x", -Math.sqrt(2000), 18)).toBeCloseTo(-804.9844);
 });
@@ -86,4 +87,41 @@ test('Divisão: √100 / 5 = 2', () => {
 // teste erro
 test('Operação inválida', () => {
     expect(() => doOperador("%", 10, 2)).toThrow("Operação Inválida");
+});
+
+// testes de executarCalculo
+test("executarCalculo soma corretamente", () => {
+  expect(executarCalculo(2, 3, "+")).toBe(5);
+});
+
+test("executarCalculo divisão por zero", () => {
+  expect(executarCalculo(5, 0, "/")).toBe("Erro: divisão por zero");
+});
+
+// testes de trollarCalculo
+test("Trollagem mostra mensagens na ordem correta", () => {
+  const mensagens = [];
+
+  trollarCalculo(2, 2, "+", (msg) => {
+    mensagens.push(msg);
+  });
+
+  // Avança 1s
+  jest.advanceTimersByTime(1000);
+  expect(mensagens).toContain("Resultado: Hello World 😎");
+
+  // Avança mais 1s (2s total)
+  jest.advanceTimersByTime(1000);
+  expect(mensagens).toContain("Resultado: Brincadeira 😅");
+
+  // Avança mais 1s (3s total)
+  jest.advanceTimersByTime(1000);
+  expect(mensagens).toContain("Resultado: 4");
+
+  // Ordem final
+  expect(mensagens).toEqual([
+    "Resultado: Hello World 😎",
+    "Resultado: Brincadeira 😅",
+    "Resultado: 4"
+  ]);
 });

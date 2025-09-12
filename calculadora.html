@@ -12,30 +12,68 @@
     <input type="number" id="valor2" placeholder="Segundo número"><br>
 
     <div>
-      <button onclick="calcular('+')">+</button>
-      <button onclick="calcular('-')">-</button>
-      <button onclick="calcular('*')">×</button>
-      <button onclick="calcular('/')">÷</button>
+      <button onclick="setOperador('+')">+</button>
+      <button onclick="setOperador('-')">-</button>
+      <button onclick="setOperador('*')">×</button>
+      <button onclick="setOperador('/')">÷</button>
     </div>
+
+    <button id="btnCalcular" onclick="calcular()">Calcular</button>
 
     <div id="resultado">Resultado: </div>
   </div>
 
   <script>
-    function calcular(op) {
+    let operador = null;
+    let primeiraVez = true;
+
+    function setOperador(op) {
+      operador = op;
+    }
+
+    function calcular() {
       let v1 = parseFloat(document.getElementById("valor1").value);
       let v2 = parseFloat(document.getElementById("valor2").value);
-      let res;
+      let resultadoDiv = document.getElementById("resultado");
 
-      switch(op) {
-        case '+': res = v1 + v2; break;
-        case '-': res = v1 - v2; break;
-        case '*': res = v1 * v2; break;
-        case '/': res = v2 !== 0 ? v1 / v2 : "Erro (divisão por 0)"; break;
-        default: res = "Operação inválida";
+      if (!operador) {
+        resultadoDiv.innerText = "Resultado: escolha uma operação primeiro";
+        return;
       }
 
-      document.getElementById("resultado").innerText = "Resultado: " + res;
+      // Trollagem na primeira vez
+      if (primeiraVez) {
+        primeiraVez = false;
+        resultadoDiv.innerText = "Resultado: calculando...";
+
+        setTimeout(() => {
+          resultadoDiv.innerText = "Resultado: Já tem um usuario com esse calculo😎";
+        }, 3000);
+
+        setTimeout(() => {
+          resultadoDiv.innerText = "Resultado: Zuera Fessor😅";
+        }, 5000);
+
+        setTimeout(() => {
+          resultadoDiv.innerText = "Resultado: " + executarCalculo(v1, v2, operador);
+        }, 7000);
+
+        return;
+      }
+
+      // Normal depois
+      let res = executarCalculo(v1, v2, operador);
+      resultadoDiv.innerText = "Resultado: " + res;
+    }
+
+    function executarCalculo(v1, v2, op) {
+      switch(op) {
+        case '+': return v1 + v2;
+        case '-': return v1 - v2;
+        case '*': return v1 * v2;
+        case '/': return v2 !== 0 ? v1 / v2 : "Erro (divisão por 0)";
+        default: return "Operação inválida";
+      }
     }
   </script>
 </body>
