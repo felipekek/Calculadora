@@ -1,0 +1,106 @@
+/* Reset básico */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove setas no Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo da página */
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1d3557, #457b9d);
+}
+
+/* Container da calculadora */
+.calculadora {
+  background: #f1faee;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  width: 320px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.calculadora:hover {
+  transform: scale(1.03);
+}
+
+/* Título */
+.calculadora h2 {
+  margin-bottom: 20px;
+  color: #1d3557;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Inputs */
+.calculadora input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #457b9d;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.calculadora input:focus {
+  border-color: #1d3557;
+  background: #f8f9fa;
+}
+
+/* Botões */
+.calculadora button {
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  background: #457b9d;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.calculadora button:hover {
+  background: #1d3557;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+}
+
+.calculadora button:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Resultado */
+#resultado {
+  margin-top: 20px;
+  padding: 12px;
+  background: #e9ecef;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: #1d3557;
+  font-weight: bold;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Básica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculadora">
+    <h2>Calculadora</h2>
+    <input type="number" id="valor1" placeholder="Primeiro número"><br>
+    <input type="number" id="valor2" placeholder="Segundo número"><br>
+
+    <div>
+      <button onclick="calcular('+')">+</button>
+      <button onclick="calcular('-')">-</button>
+      <button onclick="calcular('*')">×</button>
+      <button onclick="calcular('/')">÷</button>
+    </div>
+
+    <div id="resultado">Resultado: </div>
+  </div>
+
+  <script>
+    function calcular(op) {
+      let v1 = parseFloat(document.getElementById("valor1").value);
+      let v2 = parseFloat(document.getElementById("valor2").value);
+      let res;
+
+      switch(op) {
+        case '+': res = v1 + v2; break;
+        case '-': res = v1 - v2; break;
+        case '*': res = v1 * v2; break;
+        case '/': res = v2 !== 0 ? v1 / v2 : "Erro (divisão por 0)"; break;
+        default: res = "Operação inválida";
+      }
+
+      document.getElementById("resultado").innerText = "Resultado: " + res;
+    }
+  </script>
+</body>
+</html>
